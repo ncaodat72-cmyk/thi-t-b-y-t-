@@ -3,281 +3,138 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GitHub Profile Mockup</title>
+    <title>Phân Tích Dữ Liệu Parkinson Giả Lập</title>
     <style>
-        /* --- 1. MÃ MÀU CHUẨN GITHUB DARK MODE --- */
         :root {
-            --bg-canvas: #0d1117;       /* Nền chính */
-            --bg-card: #161b22;         /* Nền card */
-            --border-color: #30363d;    /* Màu viền */
-            --text-primary: #c9d1d9;    /* Chữ chính */
-            --text-secondary: #8b949e;  /* Chữ phụ */
-            --link-color: #58a6ff;      /* Màu link xanh */
-            --btn-bg: #21262d;          /* Nền nút bấm */
-            --btn-hover: #30363d;       /* Nút bấm khi hover */
-            --html-color: #e34c26;      /* Màu của chấm tròn ngôn ngữ HTML */
-        }
-
-        /* --- 2. RESET GIAO DIỆN --- */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            --primary-color: #2c3e50;
+            --secondary-color: #18bc9c;
+            --bg-color: #f8f9fa;
+            --text-color: #333;
+            --card-bg: #ffffff;
         }
 
         body {
-            background-color: var(--bg-canvas);
-            color: var(--text-primary);
-            padding: 40px 20px;
-            display: flex;
-            justify-content: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
         }
 
-        /* --- 3. LAYOUT CHÍNH (CONTAINER) --- */
-        .github-container {
-            width: 100%;
-            max-width: 900px;
-            display: grid;
-            grid-template-columns: 260px 1fr;
-            gap: 32px;
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
         }
 
-        /* --- 4. CỘT TRÁI: THÔNG TIN CÁ NHÂN (SIDEBAR) --- */
-        .sidebar {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-        }
-
-        .avatar {
-            width: 100%;
-            max-width: 260px;
-            border-radius: 50%;
-            border: 1px solid var(--border-color);
-            margin-bottom: 16px;
-        }
-
-        .user-name {
-            font-size: 24px;
-            font-weight: 600;
-            line-height: 1.25;
-        }
-
-        .user-username {
-            font-size: 20px;
-            font-weight: 300;
-            color: var(--text-secondary);
-            margin-bottom: 16px;
-        }
-
-        .user-bio {
-            font-size: 14px;
-            margin-bottom: 16px;
-            line-height: 1.5;
-        }
-
-        .btn-edit {
-            width: 100%;
-            background-color: var(--btn-bg);
-            color: var(--text-primary);
-            border: 1px solid var(--border-color);
-            padding: 6px 16px;
-            font-size: 14px;
-            font-weight: 500;
-            border-radius: 6px;
-            cursor: pointer;
+        header {
             text-align: center;
-            transition: background-color 0.2s;
-            margin-bottom: 16px;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: linear-gradient(135deg, var(--primary-color), #34495e);
+            color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
 
-        .btn-edit:hover {
-            background-color: var(--btn-hover);
-        }
+        h1 { margin: 0; font-size: 24px; }
+        h2 { color: var(--primary-color); border-bottom: 2px solid var(--secondary-color); padding-bottom: 8px; margin-top: 30px; }
 
-        .user-stats {
-            font-size: 14px;
-            color: var(--text-secondary);
-            display: flex;
-            gap: 8px;
-            align-items: center;
-        }
-
-        .user-stats strong {
-            color: var(--text-primary);
-        }
-
-        /* --- 5. CỘT PHẢI: DANH SÁCH REPOSITORY --- */
-        .main-content {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .section-title {
-            font-size: 16px;
-            font-weight: 400;
-            margin-bottom: 16px;
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .repo-grid {
+        .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 16px;
+            grid-template-columns: 1fr;
+            gap: 20px;
         }
 
-        .repo-card {
-            background-color: var(--bg-canvas);
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            padding: 16px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+        @media (min-width: 768px) {
+            .grid { grid-template-columns: 1fr 1fr; }
         }
 
-        .repo-header a {
-            color: var(--link-color);
-            font-weight: 600;
+        .card {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .table-container {
+            overflow-x: auto;
+            margin-top: 15px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 10px;
             font-size: 14px;
-            text-decoration: none;
         }
 
-        .repo-header a:hover {
-            text-decoration: underline;
+        table, th, td {
+            border: 1px solid #dee2e6;
         }
 
-        .repo-badge {
-            font-size: 12px;
-            color: var(--text-secondary);
-            border: 1px solid var(--border-color);
-            padding: 2px 7px;
-            border-radius: 20px;
-            font-weight: 500;
-            margin-left: 8px;
-            display: inline-block;
-            vertical-align: middle;
+        th {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 10px;
+            text-align: left;
         }
 
-        .repo-description {
-            font-size: 12px;
-            color: var(--text-secondary);
-            margin-top: 8px;
-            margin-bottom: 16px;
-            line-height: 1.5;
+        td {
+            padding: 10px;
         }
 
-        .repo-meta {
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .metric {
             display: flex;
-            gap: 16px;
-            font-size: 12px;
-            color: var(--text-secondary);
-            align-items: center;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px dashed #eee;
         }
 
-        .lang-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background-color: var(--html-color);
-            display: inline-block;
-            margin-right: 4px;
-            vertical-align: middle;
-        }
-
-        .meta-item {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-
-        /* --- 6. RESPONSIVE CHO MOBILE --- */
-        @media (max-width: 768px) {
-            .github-container {
-                grid-template-columns: 1fr;
-            }
-            .sidebar {
-                align-items: center;
-                text-align: center;
-            }
-            .avatar {
-                max-width: 150px;
-            }
-        }
+        .metric:last-child { border: none; }
+        .metric-value { font-weight: bold; color: var(--secondary-color); }
     </style>
 </head>
 <body>
 
-    <div class="github-container">
-        
-        <aside class="sidebar">
-            <img class="avatar" src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=300" alt="GitHub Avatar">
-            <h1 class="user-name">Alex Coder</h1>
-            <h2 class="user-username">alexcoder_dev</h2>
-            <p class="user-bio">Full-stack Developer | Đam mê mã nguồn mở và xây dựng những sản phẩm web hữu ích cho cộng đồng. 🚀</p>
-            <button class="btn-edit">Edit profile</button>
-            
-            <div class="user-stats">
-                <span>👥 <strong>1.2k</strong> followers</span>
-                <span>•</span>
-                <span><strong>450</strong> following</span>
-            </div>
-        </aside>
+<div class="container">
+    <header>
+        <h1>Hệ Thống Phân Tích Số Liệu Bệnh Parkinson (Giả Lập)</h1>
+        <p>Tự động tính toán phân tích mô tả và phân tích nhóm</p>
+    </header>
 
-        <main class="main-content">
-            <div class="section-title">
-                <span>Pinned repositories</span>
-            </div>
-
-            <div class="repo-grid">
-                
-                <div class="repo-card">
-                    <div>
-                        <div class="repo-header">
-                            <a href="#">awesome-web-templates</a>
-                            <span class="repo-badge">Public</span>
-                        </div>
-                        <p class="repo-description">Tổng hợp các mẫu giao diện HTML/CSS hiện đại, responsive và hoàn toàn miễn phí cho lập trình viên.</p>
-                    </div>
-                    <div class="repo-meta">
-                        <div><span class="lang-dot"></span>HTML</div>
-                        <div class="meta-item">
-                            <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" fill="currentColor"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Zm0 2.445L6.615 5.5a.75.75 0 0 1-.564.41l-3.097.45 2.24 2.184a.75.75 0 0 1 .216.664l-.528 3.084 2.769-1.456a.75.75 0 0 1 .698 0l2.77 1.456-.53-3.084a.75.75 0 0 1 .216-.664l2.24-2.183-3.096-.45a.75.75 0 0 1-.564-.41L8 2.694Z"></path></svg>
-                            <span>342</span>
-                        </div>
-                        <div class="meta-item">
-                            <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" fill="currentColor"><path d="M5 3.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm0 2.122a2.25 2.25 0 1 0-1.5 0v4.256a2.251 2.251 0 1 0 1.5 0V5.372Zm8-.122a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm0 2.122a2.25 2.25 0 1 0-1.5 0v1.256a2.251 2.251 0 1 0 1.5 0V7.372ZM11.5 11.5a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5Z"></path></svg>
-                            <span>89</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="repo-card">
-                    <div>
-                        <div class="repo-header">
-                            <a href="#">github-clone-css</a>
-                            <span class="repo-badge">Public</span>
-                        </div>
-                        <p class="repo-description">Dự án nhỏ mô phỏng lại giao diện GitHub bằng CSS nguyên bản để luyện tập kỹ năng Grid và Flexbox.</p>
-                    </div>
-                    <div class="repo-meta">
-                        <div><span class="lang-dot"></span>HTML</div>
-                        <div class="meta-item">
-                            <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" fill="currentColor"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Zm0 2.445L6.615 5.5a.75.75 0 0 1-.564.41l-3.097.45 2.24 2.184a.75.75 0 0 1 .216.664l-.528 3.084 2.769-1.456a.75.75 0 0 1 .698 0l2.77 1.456-.53-3.084a.75.75 0 0 1 .216-.664l2.24-2.183-3.096-.45a.75.75 0 0 1-.564-.41L8 2.694Z"></path></svg>
-                            <span>105</span>
-                        </div>
-                        <div class="meta-item">
-                            <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" fill="currentColor"><path d="M5 3.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm0 2.122a2.25 2.25 0 1 0-1.5 0v4.256a2.251 2.251 0 1 0 1.5 0V5.372Zm8-.122a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm0 2.122a2.25 2.25 0 1 0-1.5 0v1.256a2.251 2.251 0 1 0 1.5 0V7.372ZM11.5 11.5a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5Z"></path></svg>
-                            <span>14</span>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </main>
+    <div class="card">
+        <h2>1. Dữ liệu bệnh nhân gốc (Tương đương file .csv)</h2>
+        <div class="table-container">
+            <table id="data-table">
+                <thead>
+                    <tr>
+                        <th>Mã BN</th>
+                        <th>Tuổi</th>
+                        <th>Giới tính</th>
+                        <th>Số năm bệnh</th>
+                        <th>Điểm UPDRS</th>
+                        <th>Mức độ run</th>
+                        <th>Nhận thức</th>
+                        <th>Đáp ứng thuốc</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    </tbody>
+            </table>
+        </div>
     </div>
 
-</body>
-</html>
+    <div class="grid">
+        <div class="card">
+            <h2>2. Phân Tích Mô Tả (Descriptive)</h2>
+            <div id="descriptive-analysis">
+                <div class="metric"><span>Tổng số bệnh nhân:</span> <span class="metric-value" id="total-patients">0</span></div>
+                <div class="metric"><span>Tuổi trung bình:</span> <span class="metric-value" id="avg-age">0</span></div>
+                <div class="metric"><span>Khoảng tuổi (Min - Max):</span> <span class="metric-value" id="age-range">0</span></div>
+                <div class="metric"><span>Điểm UPDRS trung bình:</span> <span class="metric-value" id="avg-updrs">0</span></div>
+                <div class="metric"><span>Tỷ lệ Nam / Nữ:</span> <span
